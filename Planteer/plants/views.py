@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpRequest
-from .models import Plant
+from .models import Plant, Country
 from .forms import PlantForm
 
 # 1) Show all plants
@@ -50,3 +50,13 @@ def search_view(request: HttpRequest):
     query = request.GET.get("query", "")
     results = Plant.objects.filter(name__icontains=query) if query else []
     return render(request, "plants/search.html", {"query": query, "results": results})
+
+# 7) Filtering by country
+def plants_by_country(request, country_id):
+    country = Country.objects.get(id=country_id)
+    plants = country.plants.all()
+    return render(request, 'plants/plants_by_country.html', {
+        'country': country,
+        'plants': plants
+    })
+

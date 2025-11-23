@@ -1,10 +1,10 @@
 from django import forms
-from .models import Plant
+from .models import Plant, Country
 
 class PlantForm(forms.ModelForm):
     class Meta:
         model = Plant
-        fields = ['name', 'about', 'used_for', 'image', 'category', 'is_edible']
+        fields = ['name', 'about', 'used_for', 'image', 'category', 'is_edible', 'countries']
 
         widgets = {
             'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -12,4 +12,6 @@ class PlantForm(forms.ModelForm):
             'used_for': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'category': forms.Select(attrs={'class': 'form-select'}),
             'is_edible': forms.CheckboxInput(),
+            'countries': forms.CheckboxSelectMultiple()
         }
+

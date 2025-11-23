@@ -13,6 +13,15 @@
                     <h5>{{ plant.name }}</h5>
                     <p class="text-muted">{{ plant.about|truncatechars:40 }}</p>
                     <p class="fw-bold">{{ plant.category }}</p>
+                    <p>
+                        Native to:
+                        {% for c in plant.countries.all %}
+                            <a href="{% url 'plants:plants_by_country' c.id %}">{{ c.name }}</a>
+                            {% if not forloop.last %}, {% endif %}
+                        {% empty %}
+                            <span>No country info</span>
+                        {% endfor %}
+                    </p>
                 </div>
             </div>
         </a>
