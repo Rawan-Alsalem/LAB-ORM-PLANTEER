@@ -4,9 +4,9 @@
 {% block content %}
 <div class="row justify-content-center">
   <div class="col-md-5">
-    <h2>Login</h2>
-    <div class="card p-4 shadow-sm">
-      <form method="post">
+    <div class="card p-4 shadow h-100">
+      <h2 class="pb-3 text-center">Login</h2>
+      <form method="post" class="p-4">
         {% csrf_token %}
         {{ form.non_field_errors }}
         <div class="mb-3">
@@ -18,9 +18,12 @@
           {{ form.password }}
         </div>
         <input type="hidden" name="next" value="{{ next }}">
-        <button class="btn btn-primary" type="submit">Login</button>
+        <button class="btn btn-success w-100 mt-4" type="submit">Login</button>
       </form>
     </div>
+  </div>
+  <div class="col-md-6">
+    <img src="{% static 'images/hero-plants.jpg' %}" class="img-fluid rounded h-100" />
   </div>
 </div>
 {% endblock %}
